@@ -32,6 +32,7 @@ class sc {
         $this->connectToDB();
         $this->getConfigFromDB();
         $this->setTimeZone();
+        print($this->getCurrentGroupsByName("tractors"));
     }
 
     private function setTimeZone() {
@@ -81,11 +82,21 @@ class sc {
     }
     
     public function getCurrentGroupsByName($name) {
-        $group_list_url=
-
+        $group_list_url=makeGroupsURL($name);
+        $xml=getXmlFrom($group_list_url);
            
-           return $groups;
-
+        foreach ($xml->children() as $group) {
+            $group = array();
+            foreach($group->children() as $attr) {
+               /* print($attr->getName()." ||| ". $attr. "<br>");*/
+                if($attr->getName() == "id") {$group['id']=$attr;}
+                if($attr->getName() == "name") {$group['name']=$attr;}
+            }
+            if($group['id'] && $group['name']) {
+                array_push($groups,$group);
+            }
+        }
+        return $groups;
     }
 
 } 
