@@ -84,11 +84,11 @@ class sc {
     public function getCurrentGroupsByName($name) {
         $group_list_url=$this->makeGroupsURL($name);
         $xml=$this->getXmlFrom($group_list_url);
+        $groups = array();
            
         foreach ($xml->children() as $xmlgroup) {
             $group = array();
             foreach($xmlgroup->children() as $attr) {
-               /* print($attr->getName()." ||| ". $attr. "<br>");*/
                 if($attr->getName() == "id") {$group['id']=$attr;}
                 if($attr->getName() == "name") {$group['name']=$attr;}
             }
