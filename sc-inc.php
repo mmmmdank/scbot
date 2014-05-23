@@ -106,6 +106,7 @@ class sc {
                 array_push($groups,$group);
             }
         }
+        print('<h2>'.$name.' shared to '.count($groups).' groups</h2>');
         foreach($groups as $g) {
             print('---'.$g['name'].'('.$g['id'].')');
         }
