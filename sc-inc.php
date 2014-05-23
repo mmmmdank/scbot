@@ -89,8 +89,8 @@ class sc {
         foreach ($xml->children() as $xmlgroup) {
             $group = array();
             foreach($xmlgroup->children() as $attr) {
-                if($attr->getName() == "id") {$group['id']=$attr->children()[0];}
-                if($attr->getName() == "name") {$group['name']=$attr->children()[0];}
+                if($attr->getName() == "id") {$group['id']=$attr;}
+                if($attr->getName() == "name") {$group['name']=$attr;}
             }
             if($group['id'] && $group['name']) {
                 array_push($groups,$group);
