@@ -32,7 +32,10 @@ class sc {
         $this->connectToDB();
         $this->getConfigFromDB();
         $this->setTimeZone();
-        var_dump($this->getCurrentGroupsByName("tractors"));
+        $group = $this->getCurrentGroupsByName("tractors");
+        foreach($group as $g) {
+            print('---');var_dump($g);
+        }
     }
 
     private function setTimeZone() {
