@@ -82,8 +82,8 @@ class sc {
     }
     
     public function getCurrentGroupsByName($name) {
-        $group_list_url=makeGroupsURL($name);
-        $xml=getXmlFrom($group_list_url);
+        $group_list_url=$this->makeGroupsURL($name);
+        $xml=$this->getXmlFrom($group_list_url);
            
         foreach ($xml->children() as $group) {
             $group = array();
