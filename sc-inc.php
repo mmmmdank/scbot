@@ -33,7 +33,9 @@ class sc {
         $this->getConfigFromDB();
         $this->setTimeZone();
         $groups = $this->getCurrentGroupsByName("tractors");
-        $this->unshareTrackFromGroups("tractors",$groups);
+        $this->unshareTrack("tractors", $groups[0]["id"]);
+        
+        
         print('ding!');
     }
 
@@ -121,6 +123,7 @@ class sc {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch); 
+        var_dump($data);
     }
     
     public function shareTrack($name, $group_id) {
@@ -134,6 +137,7 @@ class sc {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch);
+        var_dump($data);
     }
     
     public function unshareTrackFromGroups($name, $groups) {
