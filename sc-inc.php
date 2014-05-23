@@ -97,7 +97,7 @@ class sc {
             }
         }
         foreach($groups as $g) {
-            print('---'.$g['name'].'('.$['id'].')');
+            print('---'.$g['name'].'('.$g['id'].')');
         }
         return $groups;
     }
