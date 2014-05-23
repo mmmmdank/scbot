@@ -32,7 +32,9 @@ class sc {
         $this->connectToDB();
         $this->getConfigFromDB();
         $this->setTimeZone();
-        $group = $this->getCurrentGroupsByName("tractors");
+        $groups = $this->getCurrentGroupsByName("tractors");
+        $this->unshareTrackFromGroups("tractors",$groups);
+        print('ding!');
     }
 
     private function setTimeZone() {
@@ -67,10 +69,16 @@ class sc {
     }
     
     private function makeGroupsURL($name) {
-        return $this->helperConfig['api_url'] . "tracks/" . $this->getTrackIdByName($name) . "/groups/?representation=mini&linked_partitioning=1&limit=5000&client_id=" .  $this->helperConfig['client_id'];
-        
+        return $this->helperConfig['api_url'] . "tracks/" . $this->getTrackIdByName($name) . "/groups/?representation=mini&linked_partitioning=1&limit=5000&client_id=" .  $this->helperConfig['client_id'];   
     }
     
+    private function makeUnshareUrl($name, $group_id) {
+       return $this->helperConfig['api_url'] . "groups/" . $group_id . "/contributions/" . $this->getTrackIdByName($name) . "?client_id=" . $this->helperConfig['client_id'];
+    }
+    
+    private function makeShareUrl($name, $group_id) {
+       return $this->helperConfig['api_url'] . "groups/" . $group_id . "/contributions?client_id=" . $this->helperConfig['client_id'];
+    }
     private function getXmlFrom($url) {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -100,6 +108,46 @@ class sc {
             print('---'.$g['name'].'('.$g['id'].')');
         }
         return $groups;
+    }
+    
+    public function unshareTrack($name, $group_id) {
+        $url = $this->makeUnshareUrl($name, $group_id);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: ' . $this->helperConfig['token']));
+
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $data = curl_exec($ch);
+        curl_close($ch); 
+    }
+    
+    public function shareTrack($name, $group_id) {
+        $url = $this->makeShareUrl($name, $group_id);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS    ,"track%5Bid%5D=".$this->getTrackIdByName($name));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: ' . $this->helperConfig['token'], 'Content-Length:'.strlen("track%5Bid%5D=".$this->getTrackIdByName($name))));
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $data = curl_exec($ch);
+        curl_close($ch);
+    }
+    
+    public function unshareTrackFromGroups($name, $groups) {
+        foreach($groups as $g) {
+            $this->unshareTrack($name,$g);
+        }
+    }
+    
+    public function shareTrackToGroups($name, $groups) {
+        
+    }
+    
+    public function getAllMyGroups() {
+        
     }
 
 } 
