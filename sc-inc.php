@@ -7,6 +7,30 @@ class sc {
     private $dbUser="root";
     private $dbPass="Wi11break$";
     private $link;
+    
+    private $tracks = array( "106944823"
+                            ,"103486177"
+                            ,"goldilox"=>"99583408"
+                            ,"bears"=>"97204021"
+			                ,"forklift"=>"95783468"
+			                ,"firetrucks"=>"91741317"
+                            ,"chaka"=>"79674516"
+                            ,"capleton"=>"77591808"
+                            ,"tractors"=>"87757601"
+                            ,"fela"=>"72433836"
+                            ,"magnumpig"=>"68747384");
+    
+    //goldilox //https://api.soundcloud.com/groups/28955/contributions/99583408?client_id=b45b1aa10f1ac2941910a7f0d10f8e28
+        //bears!
+	//forklift
+	//firetrucks
+	//chaka
+	//capleton/cutty
+	//tractrs
+	//fela
+	//magnum
+	
+    
     private $helperConfig = array(
        "uid" => "",
        "client_id" => "",
