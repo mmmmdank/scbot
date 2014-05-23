@@ -8,8 +8,8 @@ class sc {
     private $dbPass="Wi11break$";
     private $link;
     
-    private $tracks = array( "106944823"
-                            ,"103486177"
+    private $tracks = array( "cow"=>"106944823"
+                            ,"whales"=>"103486177"
                             ,"goldilox"=>"99583408"
                             ,"bears"=>"97204021"
 			                ,"forklift"=>"95783468"
@@ -20,17 +20,6 @@ class sc {
                             ,"fela"=>"72433836"
                             ,"magnumpig"=>"68747384");
     
-    //goldilox //https://api.soundcloud.com/groups/28955/contributions/99583408?client_id=b45b1aa10f1ac2941910a7f0d10f8e28
-        //bears!
-	//forklift
-	//firetrucks
-	//chaka
-	//capleton/cutty
-	//tractrs
-	//fela
-	//magnum
-	
-    
     private $helperConfig = array(
        "uid" => "",
        "client_id" => "",
@@ -40,7 +29,8 @@ class sc {
     );
 
     public function init() {
-        $this->getPropertiesFromDB();
+        $this->connectToDB();
+        $this->getConfigFromDB();
         $this->setTimeZone();
     }
 
@@ -48,20 +38,21 @@ class sc {
         date_default_timezone_set( 'America/New_York');
     }
 
-    private function getPropertiesFromDB() {
+    private function connectToDB() {
         $this->link = mysql_connect($this->dbHost, $this->dbUser, $this->dbPass);
         if (!$this->link) {
             die('Could not connect: ' . mysql_error());
         }
-        mysql_select_db($this->dbName);
-
+        mysql_select_db($this->dbName);    
+    }
+    
+    private function getConfigFromDB() {
         $r = mysql_query("SELECT * FROM appconfig where UID='VLAD'");
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
         print("<Br>uid: ".$row['uid']."<br>clientid: ".$row['clientid']."<br>auth token:".$row['OAuth']."<br>");
 
         var_dump($this->helperConfig);
         
- 
         $this->helperConfig['api_url'] = $row['apiURL'];
         $this->helperConfig['token'] = $row['OAuth'];
         $this->helperConfig['client_id']=$row['clientid'];
@@ -70,11 +61,30 @@ class sc {
         print("auth token: ".$this->helperConfig['token']."<br><br><hr>");
     }
 
-    public function getCurrentGroupsByTrackId($trackid) {
-        $group_list_url=$this->helperConfig['api_url'] . "tracks/" . $trackid . "/groups/?representation=mini&linked_partitioning=1&limit=5000&client_id=" .  $this->helperConfig['client_id'];
+    private function getTrackIdByName($name) {
+        return $this->tracks[$name];
+    }
+    
+    private function makeGroupsURL($name) {
+        return $this->helperConfig['api_url'] . "tracks/" . $this->getTrackIdByName($name) . "/groups/?representation=mini&linked_partitioning=1&limit=5000&client_id=" .  $this->helperConfig['client_id'];
+        
+    }
+    
+    private function getXmlFrom($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return simplexml_load_string($data);
+    }
+    
+    public function getCurrentGroupsByName($name) {
+        $group_list_url=
 
-
-
+           
+           return $groups;
 
     }
 
