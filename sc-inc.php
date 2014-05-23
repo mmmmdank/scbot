@@ -85,9 +85,9 @@ class sc {
         $group_list_url=$this->makeGroupsURL($name);
         $xml=$this->getXmlFrom($group_list_url);
            
-        foreach ($xml->children() as $group) {
+        foreach ($xml->children() as $xmlgroup) {
             $group = array();
-            foreach($group->children() as $attr) {
+            foreach($xmlgroup->children() as $attr) {
                /* print($attr->getName()." ||| ". $attr. "<br>");*/
                 if($attr->getName() == "id") {$group['id']=$attr;}
                 if($attr->getName() == "name") {$group['name']=$attr;}
