@@ -33,9 +33,6 @@ class sc {
         $this->getConfigFromDB();
         $this->setTimeZone();
         $group = $this->getCurrentGroupsByName("tractors");
-        foreach($group as $g) {
-            print('---');var_dump($g);
-        }
     }
 
     private function setTimeZone() {
@@ -98,6 +95,9 @@ class sc {
             if($group['id'] && $group['name']) {
                 array_push($groups,$group);
             }
+        }
+        foreach($groups as $g) {
+            print('---'.$g['name'].'('.$['id'].')');
         }
         return $groups;
     }
