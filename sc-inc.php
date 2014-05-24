@@ -21,9 +21,9 @@ class sc {
                             ,"magnumpig"=>"68747384");
     
     private $session_data = array();
-    private $session_data['groups_by_track'] = array();
-    private $session_data['groups_by_track_counts'] = array();
-    private $session_data['all_shared_groups'] = array();
+    $session_data['groups_by_track'] = array();
+    $session_data['groups_by_track_counts'] = array();
+    $session_data['all_shared_groups'] = array();
     
     private $helperConfig = array(
        "uid" => "",
