@@ -57,9 +57,9 @@ class sc {
     
     private function initGroups() {
         foreach($this->tracks as $t) {
-            $groups = $this->getCurrentGroupsByName($this->tracks[$t]);
-            $this->session_data['groups_by_track'][$t] = $groups;
-            $this->session_data['groups_by_track_counts'][$t] = count($groups);
+            $groups = $this->getCurrentGroupsByName($t['name']);
+            $this->session_data['groups_by_track'][$t['name']] = $groups;
+            $this->session_data['groups_by_track_counts'][$t['name']] = count($groups);
         }
         
         foreach($this->session_data['groups_by_track'] as $g4t) {
