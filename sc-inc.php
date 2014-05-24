@@ -33,8 +33,10 @@ class sc {
         $this->getConfigFromDB();
         $this->setTimeZone();
         $groups = $this->getCurrentGroupsByName("tractors");
-        $this->unshareTrack("tractors", $groups[0]["id"]);
-        
+        $this->unshareTrackFromGroups("tractors", $this->getCurrentGroupsByName("tractors"),10);
+        $groups = $this->getCurrentGroupsByName("tractors");
+        $this->shareTrackToGroups("tractors", $this->getCurrentGroupsByName("whales"),10);
+        $groups = $this->getCurrentGroupsByName("tractors");
         
         print('ding!');
     }
@@ -141,14 +143,20 @@ class sc {
         var_dump($data);
     }
     
-    public function unshareTrackFromGroups($name, $groups) {
+    public function unshareTrackFromGroups($name, $groups, $num) {
+        $counter=0;
         foreach($groups as $g) {
-            $this->unshareTrack($name,$g);
+            if($num>0) {$counter++; if($counter>=$num) {break;}}
+            $this->unshareTrack($name,$g["id"]);
         }
     }
     
-    public function shareTrackToGroups($name, $groups) {
-        
+    public function shareTrackToGroups($name, $groups, $num) {
+        $counter=0;
+        foreach($groups as $g) {
+            if($num>0) {$counter++; if($counter>=$num) {break;}}
+            $this->shareTrack($name,$g["id"]);
+        }
     }
     
     public function getAllMyGroups() {
