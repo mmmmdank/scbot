@@ -20,10 +20,12 @@ class sc {
                             ,"fela"=>"72433836"
                             ,"magnumpig"=>"68747384");
     
-    private $session_data = array();
-    $session_data['groups_by_track'] = array();
-    $session_data['groups_by_track_counts'] = array();
-    $session_data['all_shared_groups'] = array();
+    private $session_data = array(
+        'groups_by_track'=>array(),
+        'groups_by_track_counts'=>array(),
+        'all_shared_groups'=>array();
+    );
+
     
     private $helperConfig = array(
        "uid" => "",
