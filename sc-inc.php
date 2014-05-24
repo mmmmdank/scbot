@@ -32,11 +32,21 @@ class sc {
         $this->connectToDB();
         $this->getConfigFromDB();
         $this->setTimeZone();
-        $groups = $this->getCurrentGroupsByName("tractors");
-        $this->unshareTrackFromGroups("tractors", $this->getCurrentGroupsByName("tractors"),10);
-        $groups = $this->getCurrentGroupsByName("tractors");
-        $this->shareTrackToGroups("tractors", $this->getCurrentGroupsByName("whales"),10);
-        $groups = $this->getCurrentGroupsByName("tractors");
+        /*$groups = $this->getCurrentGroupsByName("tractors");*/
+        $this->unshareTrackFromGroups("bears", $this->getCurrentGroupsByName("bears"),10);
+        $this->shareTrackToGroups("bears", $this->getCurrentGroupsByName("forklift"),10);
+        
+        $this->unshareTrackFromGroups("forklift", $this->getCurrentGroupsByName("forklift"),10);
+        $this->shareTrackToGroups("forklift", $this->getCurrentGroupsByName("bears"),10);
+        
+        $this->unshareTrackFromGroups("cow", $this->getCurrentGroupsByName("cow"),10);
+        $this->shareTrackToGroups("cow", $this->getCurrentGroupsByName("chaka"),10);
+        
+        $this->unshareTrackFromGroups("firetrucks", $this->getCurrentGroupsByName("firetrucks"),10);
+        $this->shareTrackToGroups("firetrucks", $this->getCurrentGroupsByName("tractors"),10);
+        
+        $this->unshareTrackFromGroups("whales", $this->getCurrentGroupsByName("whales"),10);
+        $this->shareTrackToGroups("whales", $this->getCurrentGroupsByName("forklift"),10);
         
         print('ding!');
     }
