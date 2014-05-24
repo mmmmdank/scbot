@@ -20,6 +20,11 @@ class sc {
                             ,"fela"=>"72433836"
                             ,"magnumpig"=>"68747384");
     
+    private $session_data = array();
+    private $session_data['groups_by_track'] = array();
+    private $session_data['groups_by_track_counts'] = array();
+    private $session_data['all_shared_groups'] = array();
+    
     private $helperConfig = array(
        "uid" => "",
        "client_id" => "",
@@ -32,7 +37,66 @@ class sc {
         $this->connectToDB();
         $this->getConfigFromDB();
         $this->setTimeZone();
-        /*$groups = $this->getCurrentGroupsByName("tractors");*/
+    }
+    
+    public function getStats() {
+        $stats = array();
+        $groupStats = $this->getGroupStats();
+        $profileStats = $this->getProfileStats();
+        $trackStats = $this->getTrackStats();
+        
+        $stats['profileStats'] = $profileStats;
+        $stats['groupStats'] = $groupStats;
+        $stats['trackStats'] = $trackStats;
+        
+        //$this->saveStatsToDB($stats);
+        return $stats;
+    }
+    
+    private function initGroups() {
+        foreach($this->tracks as $t) {
+            $groups = $this->getCurrentGroupsByName($t);
+            $this->session_data['groups_by_track'][$t] = $groups;
+            $this->session_data['groups_by_track_counts'][$t] = count($groups);
+        }
+        
+        foreach($this->session_data['groups_by_track'] as $g4t) {
+            foreach($g4t as $group) {
+                if(!in_array($group, $session_data['all_shared_groups'])) {
+                    array_push($session_data['all_shared_groups'], $group);   
+                }
+            }
+        }
+        
+    }
+    
+    private function getGroupStats() {
+        $stats = array();
+        if(count($this->session_data['groups_by_track'])==0) { 
+            $this->initGroups();
+        }
+        
+        //$stats['groups'] = $this->session_data['groups_by_track'];
+        $stats['groups_counts'] = $this->session_data['groups_by_track_counts'];
+        $stats['groups_total'] = count($this->session_data['all_shared_groups']);
+         
+        return $stats;
+    }
+    private function getProfileStats() {
+        $stats = array();
+        return $stats;
+    }
+    private function getTrackStats() {
+        $stats = array();
+        return $stats;
+    }
+    private function saveStatsToDB() {
+        return false;
+    }
+    
+    
+    public function doA50Reshares1stSample() {
+         /*$groups = $this->getCurrentGroupsByName("tractors");*/
         $this->unshareTrackFromGroups("bears", $this->getCurrentGroupsByName("bears"),10);
         $this->shareTrackToGroups("bears", $this->getCurrentGroupsByName("forklift"),10);
         
@@ -49,6 +113,34 @@ class sc {
         $this->shareTrackToGroups("whales", $this->getCurrentGroupsByName("forklift"),10);
         
         print('ding!');
+    }
+    
+    public function spitSwapRun1() {
+         /*$groups = $this->getCurrentGroupsByName("tractors");*/
+        $this->spitSwap("bears","forklift",10);
+        $this->spitSwap("forklift","cow",10);
+        $this->spitSwap("cow","whales",10);
+        $this->spitSwap("whales","firetrucks",10);
+        $this->spitSwap("firetrucks","bears",10);
+        
+        $this->spitSwap("bears","firetrucks",10);
+        $this->spitSwap("forklift","cow",10);
+        $this->spitSwap("bears","whales",10);
+        $this->spitSwap("forklift","firetrucks",10);
+        $this->spitSwap("whales","cow",10);
+        
+        print('ding! - spitSwapRun1');
+    }
+    
+    private function spitSwap($track1, $track2, $num){
+        $tr1groups=$this->getCurrentGroupsByName($track1);
+        $tr2groups=$this->getCurrentGroupsByName($track2);
+        
+        $this->unshareTrackFromGroups($track1, $tr1groups,$num);
+        $this->unshareTrackFromGroups($track2, $tr2groups,$num);
+        $this->shareTrackToGroups($track1, $tr2groups, $num);
+        $this->shareTrackToGroups($track2, $tr1groups, $num);
+    
     }
 
     private function setTimeZone() {
