@@ -24,8 +24,8 @@ $sc_stats = $scHelper->getStats();
         Like this:<br>
         <p style="padding:20px;">
             <?php
-                foreach($sc_stats['groupStats']['groups_counts'] as $t) {
-                    print($t.' to '.$sc_stats['groupStats']['groups_counts'][$t].'<br>');
+                foreach($sc_stats['groupStats']['groups_counts'] as $t=>$k) {
+                    print($t.' to '.$k.'<br>');
                 }
             ?>
   

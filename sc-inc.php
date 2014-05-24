@@ -64,8 +64,8 @@ class sc {
         
         foreach($this->session_data['groups_by_track'] as $g4t) {
             foreach($g4t as $group) {
-                if(!in_array($group, $session_data['all_shared_groups'])) {
-                    array_push($session_data['all_shared_groups'], $group);   
+                if(!in_array($group, $this->session_data['all_shared_groups'])) {
+                    array_push($this->session_data['all_shared_groups'], $group);   
                 }
             }
         }
