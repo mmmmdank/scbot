@@ -23,7 +23,7 @@ class sc {
     private $session_data = array(
         'groups_by_track'=>array(),
         'groups_by_track_counts'=>array(),
-        'all_shared_groups'=>array();
+        'all_shared_groups'=>array()
     );
 
     
