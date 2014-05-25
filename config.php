@@ -1,6 +1,5 @@
 <?php
-
-class sc-bot-config {
+class scbotconfig {
     public $dbName="sharemonkey";
     private $dbHost="localhost";
     private $dbUser="root";

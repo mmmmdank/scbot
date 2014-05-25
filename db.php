@@ -1,5 +1,5 @@
 ForToday<?php
-class sc-bot-db {
+class scbotdb {
     private $link;
     private $config;
     

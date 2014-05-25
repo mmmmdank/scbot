@@ -9,8 +9,8 @@ class sc {
     private $helperConfig;
     
     function __construct() {
-        $this->config = new sc-bot-config;     
-        $this->db = new sc-bot-db;
+        $this->config = new scbotconfig;     
+        $this->db = new scbotdb;
     }
     
     private $session_data = array(
