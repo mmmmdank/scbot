@@ -28,19 +28,19 @@ class scbotdb {
     }
     
     public function saveJsonStatsToDB($stats){
-        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')") or die(mysql_error());
-        $row = mysql_fetch_array($r, MYSQL_ASSOC) or die(mysql_error());
+        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')");
+        $row = mysql_fetch_array($r, MYSQL_ASSOC);
     }
     
     public function doStatsAlreadyExistsForToday(){
-        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'") or die(mysql_error());
-        $row = mysql_fetch_array($r, MYSQL_ASSOC) or die(mysql_error());
+        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'");
+        $row = mysql_fetch_array($r, MYSQL_ASSOC);
         return count($row)>0;
     }
     
     public function getJsonGroupsForToday(){
-        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'") or die(mysql_error());
-        $row = mysql_fetch_array($r, MYSQL_ASSOC) or die(mysql_error());
+        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'");
+        $row = mysql_fetch_array($r, MYSQL_ASSOC);
         return decode_json($row['JSON']);
     }
     
