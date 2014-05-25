@@ -47,7 +47,7 @@ if (!$r) {
         if (!$row) {
     die('Invalid qvvvuery: ' . mysql_error());
 }
-        return json_decode($row['JSON']);
+        return json_decode($row['JSON'], true);
     }
     
 }
