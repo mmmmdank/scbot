@@ -33,6 +33,9 @@ class scbotdb {
     die('Invalid query: ' . mysql_error());
 }
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
+        if (!$row) {
+    die('Invalid butthole!: ' . mysql_error());
+}
     }
     
     public function doStatsAlreadyExistsForToday(){
@@ -44,7 +47,7 @@ class scbotdb {
     public function getJsonGroupsForToday(){
         $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
-        return decode_json($row['JSON']);
+        return json_decode($row['JSON']);
     }
     
 }
