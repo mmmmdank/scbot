@@ -24,7 +24,6 @@ class scbotdb {
         $appconfig['token'] = $row['OAuth'];
         $appconfig['client_id']=$row['clientid'];
         $appconfig['users_url_fragment'] = $row['users_url_fragment'];
-        var_dump($appconfig);
         return $appconfig;
     }
     
@@ -36,7 +35,7 @@ class scbotdb {
     public function doStatsAlreadyExistsForToday(){
         $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
-        return count($row)>0;
+        return $row && count($row)>0;
     }
     
     public function getJsonGroupsForToday(){
