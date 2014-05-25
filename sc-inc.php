@@ -28,6 +28,7 @@ class sc {
         if($this->db->doStatsAlreadyExistsForToday()) {
             print('<br>already got stats in db for today...<br>');
             $stats = $this->db->getJsonGroupsForToday();
+            var_dump($stats);
         }
         else {
             print('<br>...fetching stats from sc<br>');
