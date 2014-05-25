@@ -23,11 +23,12 @@ class scbotdb {
         $appconfig['token'] = $row['OAuth'];
         $appconfig['client_id']=$row['clientid'];
         $appconfig['users_url_fragment'] = $row['users_url_fragment'];
+        var_dump($appconfig);
         return $appconfig;
     }
     
     public function saveJsonStatsToDB($stats){
-        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".json_encode($stats)."','".date("Ymd")."')");
+        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')");
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
     }
     
