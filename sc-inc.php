@@ -30,7 +30,7 @@ class sc {
             $stats = $this->db->getJsonGroupsForToday();
         }
         else {
-            print('<br>...fetching stats for sc<');
+            print('<br>...fetching stats from sc<br>');
             $stats = array();
             $groupStats = $this->getGroupStats();
             $profileStats = $this->getProfileStats();

@@ -28,7 +28,10 @@ class scbotdb {
     }
     
     public function saveJsonStatsToDB($stats){
-        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')", $this->link);
+        $r = mysql_query("insert into json_stats_dump (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')", $this->link);
+        if (!$result) {
+    die('Invalid query: ' . mysql_error());
+}
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
     }
     
