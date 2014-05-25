@@ -5,7 +5,6 @@ class scbotdb {
     
     function __construct($config) {
         $this->config = $config;
-        var_dump($this->config);
     }
     
     private function connectToDB() {
@@ -13,12 +12,12 @@ class scbotdb {
         if (!$this->link) {
             die('Could not connect: ' . mysql_error());
         }
-        mysql_select_db($this->config->dbName);    
+        mysql_select_db($this->config->dbName, $this->link);    
     }
     
     public function getConfigFromDB() {
         $appconfig = array();
-        $r = mysql_query("SELECT * FROM appconfig where UID='VLAD'") or die(mysql_error());
+        $r = mysql_query("SELECT * FROM appconfig where UID='VLAD'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC) or die(mysql_error());
         $appconfig['api_url'] = $row['apiURL'];
         $appconfig['token'] = $row['OAuth'];
@@ -29,7 +28,7 @@ class scbotdb {
     }
     
     public function saveJsonStatsToDB($stats){
-        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')");
+        $r = mysql_query("insert into 'json_stats_dump' (JSON,DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
     }
     
