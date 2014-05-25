@@ -4,9 +4,14 @@ include('db.php');
 
 class sc {
     //CONSTANTS
-    private $config = new sc-bot-config;     
-    private $db = new sc-bot-db;
+    private $config;     
+    private $db;
     private $helperConfig;
+    
+    function __construct() {
+        $this->config = new sc-bot-config;     
+        $this->db = new sc-bot-db;
+    }
     
     private $session_data = array(
         'groups_by_track'=>array(),
@@ -14,7 +19,7 @@ class sc {
         'all_shared_groups'=>array()
     );
     
-    public function init() {      
+    public function init() {   
         $this->db->init();
         $this->helperConfig = $this->db->getConfigFromDB();
         $this->setTimeZone();
