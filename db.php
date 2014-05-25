@@ -5,6 +5,7 @@ class scbotdb {
     
     function __construct($config) {
         $this->config = $config;
+        var_dump($this->config);
     }
     
     private function connectToDB() {
