@@ -33,8 +33,11 @@ class scbotdb {
     }
     
     public function doStatsAlreadyExistsForToday(){
-        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'", $this->link) || die(mysql_error());
-        $row = mysql_fetch_array($r, MYSQL_ASSOC);
+        $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
+if (!$r) {
+    die('Invalid query: ' . mysql_error());
+}        
+$row = mysql_fetch_array($r, MYSQL_ASSOC);
         return $row && count($row)>0;
     }
     
