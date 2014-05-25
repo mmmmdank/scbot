@@ -5,6 +5,7 @@ class scbotdb {
     
     function __construct($config) {
         $this->config = $config;
+        $this->connectToDb();
     }
     
     private function connectToDB() {
@@ -33,13 +34,13 @@ class scbotdb {
     }
     
     public function doStatsAlreadyExistsForToday(){
-        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'");
+        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
         return count($row)>0;
     }
     
     public function getJsonGroupsForToday(){
-        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'");
+        $r = mysql_query("SELECT * FROM 'json_stats_dump' where DATE='".date("Ymd")."'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
         return decode_json($row['JSON']);
     }
