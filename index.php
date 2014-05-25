@@ -2,23 +2,23 @@
 error_reporting(E_ALL);
  ini_set("display_errors", 1);
 
-print('start-----<br>');
+print('hello human, this is the realm of the robot. beware. -----<br>');
 include('sc-inc.php');
 
 $scHelper = new sc;
 
 $scHelper->init();
-$scHelper->spitSwapRun1();
+/*$scHelper->spitSwapRun1();*/
 $sc_stats = $scHelper->getStats();
 
 ?>
 <html>
     <head>
-    <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
     </head>
 
     <body>
-        <h1>stay inside the box</h1>
+        <h1>stay inside the box earthling</h1>
         ThingS: <br>
         All songs are currently shared to: <?php print($sc_stats['groupStats']['groups_total']); ?> groups;<br>
         Like this:<br>
@@ -28,7 +28,6 @@ $sc_stats = $scHelper->getStats();
                     print($t.' to '.$k.'<br>');
                 }
             ?>
-  
         </p>
 
 
