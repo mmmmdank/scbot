@@ -1,63 +1,50 @@
-<?php
+rom<br><?php
+include('config.php');
+include('db.php');
+include('urls.php');
 
 class sc {
     //CONSTANTS
-    private $dbName="sharemonkey";
-    private $dbHost="localhost";
-    private $dbUser="root";
-    private $dbPass="Wi11break$";
-    private $link;
-    
-    private $tracks = array( "cow"=>"106944823"
-                            ,"whales"=>"103486177"
-                            ,"goldilox"=>"99583408"
-                            ,"bears"=>"97204021"
-			                ,"forklift"=>"95783468"
-			                ,"firetrucks"=>"91741317"
-                            ,"chaka"=>"79674516"
-                            ,"capleton"=>"77591808"
-                            ,"tractors"=>"87757601"
-                            ,"fela"=>"72433836"
-                            ,"magnumpig"=>"68747384");
+    private $config = new sc-bot-config;     
+    private $db = new sc-bot-db;
+    private $helperConfig;
     
     private $session_data = array(
         'groups_by_track'=>array(),
         'groups_by_track_counts'=>array(),
         'all_shared_groups'=>array()
     );
-
     
-    private $helperConfig = array(
-       "uid" => "",
-       "client_id" => "",
-       "token" => "",
-       "api_url" => "",
-       "users_url_fragment" => ""
-    );
-
-    public function init() {
-        $this->connectToDB();
-        $this->getConfigFromDB();
+    public function init() {      
+        $this->db->init();
+        $this->helperConfig = $this->db->getConfigFromDB();
         $this->setTimeZone();
     }
     
     public function getStats() {
-        $stats = array();
-        $groupStats = $this->getGroupStats();
-        $profileStats = $this->getProfileStats();
-        $trackStats = $this->getTrackStats();
-        
-        $stats['profileStats'] = $profileStats;
-        $stats['groupStats'] = $groupStats;
-        $stats['trackStats'] = $trackStats;
-        
-        //$this->saveStatsToDB($stats);
+        if($this->db->doStatsAlreadyExistsForToday()) {
+            print('<br>already got stats in db for today...<br>');
+            $stats = $this->db->getJsonGroupsForToday();
+        }
+        else {
+            print('<br>...fetching stats for sc<');
+            $stats = array();
+            $groupStats = $this->getGroupStats();
+            $profileStats = $this->getProfileStats();
+            $trackStats = $this->getTrackStats();
+
+            $stats['profileStats'] = $profileStats;
+            $stats['groupStats'] = $groupStats;
+            $stats['trackStats'] = $trackStats;
+            
+            $this->db->saveJsonStatsToDB($stats);
+        }
         return $stats;
     }
     
     private function initGroups() {
-        foreach($this->tracks as $name=>$id) {
-            $groups = $this->getCurrentGroupsByName($name);
+        foreach($this->config->tracks as $name=>$id) {
+            //$groups = $this->getCurrentGroupsByName($name);
 	        $this->session_data['groups_by_track'][$name] = $groups;
             $this->session_data['groups_by_track_counts'][$name] = count($groups);
         }
@@ -149,31 +136,8 @@ class sc {
         date_default_timezone_set( 'America/New_York');
     }
 
-    private function connectToDB() {
-        $this->link = mysql_connect($this->dbHost, $this->dbUser, $this->dbPass);
-        if (!$this->link) {
-            die('Could not connect: ' . mysql_error());
-        }
-        mysql_select_db($this->dbName);    
-    }
-    
-    private function getConfigFromDB() {
-        $r = mysql_query("SELECT * FROM appconfig where UID='VLAD'");
-        $row = mysql_fetch_array($r, MYSQL_ASSOC);
-        print("<Br>uid: ".$row['uid']."<br>clientid: ".$row['clientid']."<br>auth token:".$row['OAuth']."<br>");
-
-        var_dump($this->helperConfig);
-        
-        $this->helperConfig['api_url'] = $row['apiURL'];
-        $this->helperConfig['token'] = $row['OAuth'];
-        $this->helperConfig['client_id']=$row['clientid'];
-        $this->helperConfig['users_url_fragment'] = $row['users_url_fragment'];
-        print("<h4>Pulled config from DB....</h4>");
-        print("auth token: ".$this->helperConfig['token']."<br><br><hr>");
-    }
-
     private function getTrackIdByName($name) {
-        return $this->tracks[$name];
+        return $config->tracks[$name];
     }
     
     private function makeGroupsURL($name) {
@@ -211,10 +175,6 @@ class sc {
             if($group['id'] && $group['name']) {
                 array_push($groups,$group);
             }
-        }
-        print('<h2>'.$name.' shared to '.count($groups).' groups</h2>');
-        foreach($groups as $g) {
-            print('---'.$g['name'].'('.$g['id'].')');
         }
         return $groups;
     }
@@ -264,7 +224,7 @@ class sc {
     }
     
     public function getAllMyGroups() {
-        
+        return $this->session_data['all_shared_groups'];
     }
 
 } 
