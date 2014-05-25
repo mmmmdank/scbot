@@ -3,7 +3,7 @@ class scbotdb {
     private $link;
     private $config;
     
-    public function init($config) {
+    function __construct($config) {
         $this->config = $config;
     }
     

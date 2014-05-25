@@ -10,7 +10,7 @@ class sc {
     
     function __construct() {
         $this->config = new scbotconfig;     
-        $this->db = new scbotdb;
+        $this->db = new scbotdb($this->config);
     }
     
     private $session_data = array(
@@ -20,7 +20,6 @@ class sc {
     );
     
     public function init() {   
-        $this->db->init();
         $this->helperConfig = $this->db->getConfigFromDB();
         $this->setTimeZone();
     }

@@ -1,11 +1,11 @@
 <?php
 class scbotconfig {
     public $dbName="sharemonkey";
-    private $dbHost="localhost";
-    private $dbUser="root";
-    private $dbPass="bujurocks";
+    public $dbHost="localhost";
+    public $dbUser="root";
+    public $dbPass="bujurocks";
     
-    private $tracks = array( "cow"=>"106944823"
+    public $tracks = array( "cow"=>"106944823"
                             ,"whales"=>"103486177"
                             ,"goldilox"=>"99583408"
                             ,"bears"=>"97204021"
