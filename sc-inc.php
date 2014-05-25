@@ -140,7 +140,7 @@ class sc {
     }
 
     private function getTrackIdByName($name) {
-        return $config->tracks[$name];
+        return $this->config->tracks[$name];
     }
     
     private function makeGroupsURL($name) {
