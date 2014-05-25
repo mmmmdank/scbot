@@ -1,7 +1,7 @@
 <?php
 
 class sc-bot-config {
-    private $dbName="sharemonkey";
+    public $dbName="sharemonkey";
     private $dbHost="localhost";
     private $dbUser="root";
     private $dbPass="bujurocks";

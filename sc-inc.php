@@ -1,7 +1,6 @@
-rom<br><?php
+<?php
 include('config.php');
 include('db.php');
-include('urls.php');
 
 class sc {
     //CONSTANTS
