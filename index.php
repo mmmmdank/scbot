@@ -8,7 +8,7 @@ include('sc-inc.php');
 $scHelper = new sc;
 
 $scHelper->init();
-
+$scHelper->spitSwapRun1();
 $sc_stats = $scHelper->getStats();
 
 ?>
