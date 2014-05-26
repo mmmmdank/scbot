@@ -15,10 +15,8 @@ class sc {
         $this->setTimeZone();
     }
     
-    public function testCounters() {
-        $test= $this->db->getDailyCounters();
-        print('runninz ze tetscounters.....<br>');
-        var_dump($test);
+    public function getCounters() {
+        return $this->db->getDailyCounters();
     }
     
     private $session_data = array(

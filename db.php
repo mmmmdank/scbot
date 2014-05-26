@@ -61,5 +61,19 @@ class scbotdb {
         }
     }
     
+    public function bumpUpDailyCounter($which){ //values: SHARE_COUNTER, UNSHARE_COUNTER, GROUP_POLL_COUNTER
+        $current_counters = $this->getDailyCounters();
+        if($current_counters!=false) {
+            $daily_counter = $current_counters[$which];
+            $r = mysql_query("update daily_share_counter set ".$which."=". $daily_counter++ ." where DATE='".date("Ymd")."')", $this->link);
+            return $r;            
+        }
+        else {
+            $r = mysql_query("insert into daily_share_counter (".$which.", DATE) values (1,'".date("Ymd")."')", $this->link);
+            return $r;
+        }
+    
+    }
+    
 }
 ?>
