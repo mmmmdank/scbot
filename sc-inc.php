@@ -16,7 +16,7 @@ class sc {
     }
     
     public function getCounters() {
-        return $this->db->getDailyCounters();
+      /*  return $this->db->getDailyCounters();*/
     }
     
     private $session_data = array(
