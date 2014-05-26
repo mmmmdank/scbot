@@ -17,6 +17,7 @@ class sc {
     
     public function testCounters() {
         $test= $this->db->doesDailyCounterExist();
+        print('runnin tetscounters.....<br>');
         var_dump($test);
     }
     
