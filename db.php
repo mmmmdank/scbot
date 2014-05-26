@@ -35,13 +35,24 @@ class scbotdb {
     public function doStatsAlreadyExistsForToday(){
         $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);      
 		$row = mysql_fetch_array($r, MYSQL_ASSOC);	
-        return $row && count($row)>0;
+        if($r) {
+            $row = mysql_fetch_array($r, MYSQL_ASSOC);	
+             return count($row)>0;
+        }
+        else {
+            return false;
+        }
     }
     
-    public function doesDailyCounterExist(){
-        $r = mysql_query("SELECT * FROM daily_counter where DATE='".date("Ymd")."'", $this->link);      
-		$row = mysql_fetch_array($r, MYSQL_ASSOC);	
-        return $row && count($row)>0;
+    public function getDailyCounters(){
+        $r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
+        if($r) {
+            $row = mysql_fetch_array($r, MYSQL_ASSOC);	
+            return $row;
+        }
+        else {
+            return false;
+        }
     }
     
     public function getJsonGroupsForToday(){
