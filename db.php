@@ -44,7 +44,13 @@ class scbotdb {
         }
     }
     
-    public function getDailyCounters(){
+    public function getJsonGroupsForToday(){
+        $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
+        $row = mysql_fetch_array($r, MYSQL_ASSOC);
+        return json_decode($row['JSON'], true);
+    }
+    
+     public function getDailyCounters(){
         $r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
         if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
@@ -53,12 +59,6 @@ class scbotdb {
         else {
             return false;
         }
-    }
-    
-    public function getJsonGroupsForToday(){
-        $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
-        $row = mysql_fetch_array($r, MYSQL_ASSOC);
-        return json_decode($row['JSON'], true);
     }
     
 }
