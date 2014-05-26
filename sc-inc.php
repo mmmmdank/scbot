@@ -163,6 +163,7 @@ class sc {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch);
+        $this->db->bumpUpDailyCounter('GROUP_POLL_COUNTER');
         return simplexml_load_string($data);
     }
     
@@ -195,6 +196,7 @@ class sc {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch); 
+        $this->db->bumpUpDailyCounter('UNSHARE_COUNTER');
         var_dump($data);
     }
     
@@ -209,6 +211,7 @@ class sc {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch);
+        $this->db->bumpUpDailyCounter('SHARE_COUNTER');
         var_dump($data);
     }
     
