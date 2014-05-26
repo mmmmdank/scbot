@@ -7,13 +7,13 @@ include('sc-inc.php');
 
 $scHelper = new sc;
 
-if($_GET['swapspit1']=='true') {
+if($_GET['swapspit1'] && $_GET['swapspit1']=='true') {
     print('spitswappin!');
 /*   $scHelper->spitSwapRun1();*/
     print('yeaboi!');
     exit();
 }
-else if($_GET['run']!="") {
+else if($_GET['run'] && $_GET['run']!="") {
     print('run ! '.$_GET['run']);
     /*$scHelper->spitSwapRun1();*/
     print('yeaboi! r.u.n.');
