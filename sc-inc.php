@@ -15,7 +15,7 @@ class sc {
         $this->setTimeZone();
     }
     
-    public testCounters() {
+    public function testCounters() {
         $test= $this->db->doesDailyCounterExist();
         var_dump($test);
     }
