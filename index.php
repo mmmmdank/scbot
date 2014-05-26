@@ -43,6 +43,11 @@ else {
             ?>
         </p>
         Counters:<br>
+        <?php if(isset($counters)) {?>
+            daily shares: <?php if (isset($counters['SHARE_COUNTER']) {print($counters['SHARE_COUNTER']);} ;?><br>
+            daily unshares: <?php if (isset($counters['UNSHARE_COUNTER']) {print($counters['UNSHARE_COUNTER']);} ;?><br>
+            group polls: <?php if (isset($counters['GROUP_POLL_COUNTER']) {print($counters['GROUP_POLL_COUNTER']);} ;?><br>
+       <?php }?>
 <?php
 }
 ?>
