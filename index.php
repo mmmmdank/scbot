@@ -23,7 +23,7 @@ else if(isset($_GET['run']) && $_GET['run']!="") {
 else {
 
     $sc_stats = $scHelper->getStats();
-    $counters = $scHelper->getCounters();
+    /*$counters = $scHelper->getCounters();*/
 
     $scHelper->testCounters();
     
