@@ -51,14 +51,15 @@ class scbotdb {
     }
     
     public function getDailyCounters(){
-        $r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
+        print('poo');
+        /*$r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
         if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
             return $row;
         }
         else {
             return false;
-        }
+        }*/
     }
     
     public function bumpUpDailyCounter($which){ //values: SHARE_COUNTER, UNSHARE_COUNTER, GROUP_POLL_COUNTER
