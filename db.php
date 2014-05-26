@@ -29,7 +29,7 @@ class scbotdb {
     
     public function saveJsonStatsToDB($stats){
         $r = mysql_query("insert into json_stats_dump (JSON, DATE) values ('".mysql_real_escape_string(json_encode($stats))."','".date("Ymd")."')", $this->link);
-        $row = mysql_fetch_array($r, MYSQL_ASSOC);
+        return $r;
     }
     
     public function doStatsAlreadyExistsForToday(){
@@ -46,13 +46,7 @@ class scbotdb {
     
     public function getJsonGroupsForToday(){
         $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
-if (!$r) {
-    die('Invalid query: ' . mysql_error());
-}
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
-        if (!$row) {
-    die('Invalid qvvvuery: ' . mysql_error());
-}
         return json_decode($row['JSON'], true);
     }
     
