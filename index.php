@@ -24,6 +24,7 @@ else {
 
     $sc_stats = $scHelper->getStats();
     $counters = $scHelper->getCounters();   
+    var_dump($counters);
 ?>
 <html>
     <head>
