@@ -52,8 +52,8 @@ class scbotdb {
     
     public function getDailyCounters(){
         print('poo');
-        /*$r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
-        if($r) {
+        $r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
+        /*if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
             return $row;
         }
