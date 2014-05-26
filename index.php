@@ -9,7 +9,7 @@ $scHelper = new sc;
 
 if(isset($_GET['swapspit1']) && $_GET['swapspit1']=='true') {
     print('spitswappin!');
-/*   $scHelper->spitSwapRun1();*/
+   $scHelper->spitSwapRun1();*/
     print('yeaboi!');
     exit();
 }
@@ -46,10 +46,6 @@ else {
             ?>
         </p>
         Counters:<br>
-        daily shares: <?php if (isset($counters['SHARE_COUNTER']) {print($counters['SHARE_COUNTER']);} ;?><br>
-        daily unshares: <?php if (isset($counters['UNSHARE_COUNTER']) {print($counters['UNSHARE_COUNTER']);} ;?><br>
-        group polls: <?php if (isset($counters['GROUP_POLL_COUNTER']) {print($counters['GROUP_POLL_COUNTER']);} ;?><br>
-
 <?php
 }
 ?>
