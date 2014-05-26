@@ -11,11 +11,13 @@ if($_GET['swapspit1']=='true') {
     print('spitswappin!');
 /*   $scHelper->spitSwapRun1();*/
     print('yeaboi!');
+    exit();
 }
-if($_GET['run']!="") {
+else if($_GET['run']!="") {
     print('run ! '.$_GET['run']);
     /*$scHelper->spitSwapRun1();*/
     print('yeaboi! r.u.n.');
+    exit();
 }
  
 else {
