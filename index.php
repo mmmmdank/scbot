@@ -9,7 +9,7 @@ $scHelper = new sc;
 
 if(isset($_GET['swapspit1']) && $_GET['swapspit1']=='true') {
     print('spitswappin!');
-   $scHelper->spitSwapRun1();*/
+   $scHelper->spitSwapRun1();
     print('yeaboi!');
     exit();
 }
