@@ -7,10 +7,23 @@ include('sc-inc.php');
 
 $scHelper = new sc;
 
-$scHelper->init();
-/*$scHelper->spitSwapRun1();*/
-$sc_stats = $scHelper->getStats();
+if($_GET['swapspit1']=='true') {
+    print('spitswappin!');
+/*   $scHelper->spitSwapRun1();*/
+    print('yeaboi!');
+}
+if($_GET['run']!="") {
+    print('run ! '.$_GET['run']);
+    /*$scHelper->spitSwapRun1();*/
+    print('yeaboi! r.u.n.');
+}
+ 
+else {
 
+    $sc_stats = $scHelper->getStats();
+
+    $scHelper->testCounters();
+    
 ?>
 <html>
     <head>
@@ -30,11 +43,8 @@ $sc_stats = $scHelper->getStats();
             ?>
         </p>
 
-
 <?php
-
-
-
+}
 ?>
 </body>
     

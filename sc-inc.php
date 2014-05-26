@@ -11,6 +11,13 @@ class sc {
     function __construct() {
         $this->config = new scbotconfig;     
         $this->db = new scbotdb($this->config);
+        $this->helperConfig = $this->db->getConfigFromDB();
+        $this->setTimeZone();
+    }
+    
+    public testCounters() {
+        $test= $this->db->doesDailyCounterExist();
+        var_dump($test);
     }
     
     private $session_data = array(
@@ -18,11 +25,6 @@ class sc {
         'groups_by_track_counts'=>array(),
         'all_shared_groups'=>array()
     );
-    
-    public function init() {   
-        $this->helperConfig = $this->db->getConfigFromDB();
-        $this->setTimeZone();
-    }
     
     public function getStats() {
         if($this->db->doStatsAlreadyExistsForToday()) {

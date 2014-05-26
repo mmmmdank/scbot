@@ -38,6 +38,12 @@ class scbotdb {
         return $row && count($row)>0;
     }
     
+    public function doesDailyCounterExist(){
+        $r = mysql_query("SELECT * FROM daily_counter where DATE='".date("Ymd")."'", $this->link);      
+		$row = mysql_fetch_array($r, MYSQL_ASSOC);	
+        return $row && count($row)>0;
+    }
+    
     public function getJsonGroupsForToday(){
         $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
 if (!$r) {
