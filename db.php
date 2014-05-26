@@ -50,7 +50,7 @@ class scbotdb {
         return json_decode($row['JSON'], true);
     }
     
-     public function getDailyCounters(){
+    public function getDailyCounters(){
         $r = mysql_query("SELECT * FROM daily_share_counter where DATE='".date("Ymd")."'", $this->link);
         if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
