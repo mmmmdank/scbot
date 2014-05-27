@@ -19,6 +19,12 @@ else if(isset($_GET['run']) && $_GET['run']!="") {
     print('yeaboi! r.u.n.');
     exit();
 }
+else if(isset($_GET['getgroups']) && $_GET['getgroups']=="true") {
+    print('run getgroups! '.$_GET['getgroups']);
+    $scHelper->initGroups();
+    print('yeaboi! r.getgroups.n.');
+    exit();
+}
  
 else {
 

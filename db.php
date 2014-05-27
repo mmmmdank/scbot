@@ -65,7 +65,7 @@ class scbotdb {
         $current_counters = $this->getDailyCounters();
         if($current_counters!=false) {
             $daily_counter = $current_counters[$which];
-            $r = mysql_query("update daily_share_counter set ".$which."=". $daily_counter++ ." where DATE='".date("Ymd")."')", $this->link);
+            $r = mysql_query("update daily_share_counter set '".$which."'=". $daily_counter++ ." where DATE='".date("Ymd")."')", $this->link);
             return $r;            
         }
         else {

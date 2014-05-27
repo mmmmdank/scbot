@@ -47,7 +47,7 @@ class sc {
         return $stats;
     }
     
-    private function initGroups() {
+    public function initGroups() {/* should be private*/
         foreach($this->config->tracks as $name=>$id) {
             $groups = $this->getCurrentGroupsByName($name);
 	        $this->session_data['groups_by_track'][$name] = $groups;
