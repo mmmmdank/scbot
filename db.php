@@ -66,7 +66,7 @@ class scbotdb {
         print('bump bump<br>');var_dump($current_counters);
         if($current_counters!=false) {
             print('<h1>1</h1>');
-            $daily_counter = ($current_counters[$which])++;              
+            $daily_counter = $current_counters[$which]++;              
             $r = mysql_query("update daily_share_counter set ".$which."='". $daily_counter."' where DATE='".date("Ymd")."'", $this->link);
             print("<h4>".$daily_counter."</h4><h4>"."update daily_share_counter set ".$which."='". ((int)$daily_counter)++ ."' where DATE='".date("Ymd")."'"."</h4>");
             var_dump($r);
