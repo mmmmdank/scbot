@@ -65,11 +65,13 @@ class scbotdb {
         $current_counters = $this->getDailyCounters();
         print('bump bump<br>');var_dump($current_counters);
         if($current_counters!=false) {
+            print('<h1>1</h1>')
             $daily_counter = $current_counters[$which];              
             $r = mysql_query("update daily_share_counter set ".$which."=". $daily_counter++ ." where DATE='".date("Ymd")."')", $this->link);
             return $r;            
         }
         else {
+                        print('<h1>2</h1>')
             $r = mysql_query("insert into daily_share_counter (".$which.", DATE) values (1,'".date("Ymd")."')", $this->link);
             return $r;
         }
