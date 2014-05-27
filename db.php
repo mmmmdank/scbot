@@ -66,8 +66,8 @@ class scbotdb {
         print('sdfsf<br>');var_dump($current_counters);
         if($current_counters!=false) {
             $daily_counter = $current_counters[$which];
-              print('sdfsfssddssd<br>');var_dump($current_counters[$which]);
-            $r = mysql_query("update daily_share_counter set '".$which."'=". $daily_counter++ ." where DATE='".date("Ymd")."')", $this->link);
+              print('sdfsfssddssd<br>');var_dump($daily_counter);
+            $r = mysql_query("update daily_share_counter set '".$which."'=". intval($daily_counter)++ ." where DATE='".date("Ymd")."')", $this->link);
             return $r;            
         }
         else {
