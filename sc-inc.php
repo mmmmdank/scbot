@@ -126,6 +126,18 @@ class sc {
         print('ding! - spitSwapRun1');
     }
     
+     public function randomSwapOneTrack($num) {
+        $track1 = $this->getRandomTrackName();
+        $track2 = $this->getRandomTrackName();
+         
+        print('<h5>random swapper: '.$track1.' and '.$track2.'</h5>'); 
+        
+        /*$this->spitSwap($track1,$track2,$num);*/
+        
+        
+        print('ding! - randomSwapOneTrack');
+    }
+    
     private function spitSwap($track1, $track2, $num){
         $tr1groups=$this->getCurrentGroupsByName($track1);
         $tr2groups=$this->getCurrentGroupsByName($track2);
@@ -143,6 +155,10 @@ class sc {
 
     private function getTrackIdByName($name) {
         return $this->config->tracks[$name];
+    }
+    
+    private function getRandomTrackName() {
+        return array_rand($this->config->tracks,1);
     }
     
     private function makeGroupsURL($name) {

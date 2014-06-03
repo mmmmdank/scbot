@@ -7,6 +7,12 @@ include('sc-inc.php');
 
 $scHelper = new sc;
 
+if(isset($_GET['randomswap']) && $_GET['randomswap']>0) {
+    print('random swappin '.$_GET['randomswap'].' many shares<br><br>');
+    $scHelper->randomSwapOneTrack($_GET['randomswap']);
+    print('<br><br>yeaboi! swapin random!');
+    exit();
+}
 if(isset($_GET['swapspit1']) && $_GET['swapspit1']=='true') {
     print('spitswappin!');
    $scHelper->spitSwapRun1();
