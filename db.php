@@ -36,7 +36,7 @@ class scbotdb {
         $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
         if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
-            print('<span style="color:green;">'.$row.' --- '.count($row).' ---- '.(count($row)>0).'</span>');
+            print('<span style="color:green;">'.$row.' --- '.count($row).' ---- '.(count($row)>0 == true).'</span>');
              return count($row)>0;
         }
         else {
