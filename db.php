@@ -76,7 +76,19 @@ class scbotdb {
             $r = mysql_query("insert into daily_share_counter (".$which.", DATE) values (1,'".date("Ymd")."')", $this->link);
             return $r;
         }
+    }
     
+    public function clearanceToShare(){
+        $current_counters = $this->getDailyCounters();
+        if($current_counters!=false) {
+            if($current_counters['SHARE_COUNTER']>=99) {print('<p style="color:red;">too many shares today</p>');return false;}
+            else if($current_counters['UNSHARE_COUNTER']>=99) {print('<p style="color:red;">too many UNshares today</p>');return false;}
+            else { print('<p style="color:green;">CLEAR!</p>');return true;}
+        }
+        else { //if we havent done anything yet today we are good to go!
+            print('<p style="color:green;">CLEAR! (first hit of the day)</p>');
+            return true;
+        }
     }
     
 }
