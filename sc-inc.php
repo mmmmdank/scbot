@@ -135,7 +135,7 @@ class sc {
          
         print('<h5>random swapper: '.$track1.' and '.$track2.'</h5>'); 
     
-        /*$this->spitSwap($track1,$track2,$num);*/
+        $this->spitSwap($track1,$track2,$num);
             
         print('ding! - randomSwapOneTrack');
     }
@@ -147,8 +147,7 @@ class sc {
         $this->unshareTrackFromGroups($track1, $tr1groups,$num);
         $this->unshareTrackFromGroups($track2, $tr2groups,$num);
         $this->shareTrackToGroups($track1, $tr2groups, $num);
-        $this->shareTrackToGroups($track2, $tr1groups, $num);
-    
+        $this->shareTrackToGroups($track2, $tr1groups, $num);    
     }
 
     private function setTimeZone() {
