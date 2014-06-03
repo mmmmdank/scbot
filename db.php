@@ -33,8 +33,7 @@ class scbotdb {
     }
     
     public function doStatsAlreadyExistsForToday(){
-        $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);      
-		$row = mysql_fetch_array($r, MYSQL_ASSOC);	
+        $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
         if($r) {
             $row = mysql_fetch_array($r, MYSQL_ASSOC);	
              return count($row)>0;
@@ -63,9 +62,9 @@ class scbotdb {
     
     public function bumpUpDailyCounter($which){ //values: SHARE_COUNTER, UNSHARE_COUNTER, GROUP_POLL_COUNTER
         $current_counters = $this->getDailyCounters();
-        print('bump bump<br>');var_dump($current_counters);
+        print('bump bump; current counters: <br>');var_dump($current_counters);
         if($current_counters!=false) {
-            print('<h1>1</h1>');
+            print('<h1>already have counters for today</h1>');
             $daily_counter = $current_counters[$which]++;              
             $r = mysql_query("update daily_share_counter set ".$which."='". $daily_counter."' where DATE='".date("Ymd")."'", $this->link);
             print("<h4>".$daily_counter."</h4><h4>"."update daily_share_counter set ".$which."='". $daily_counter ."' where DATE='".date("Ymd")."'"."</h4>");
@@ -73,7 +72,7 @@ class scbotdb {
             return $r;            
         }
         else {
-                        print('<h1>2</h1>');
+                        print('<h1>dont have counters for today yet - create</h1>');
             $r = mysql_query("insert into daily_share_counter (".$which.", DATE) values (1,'".date("Ymd")."')", $this->link);
             return $r;
         }
