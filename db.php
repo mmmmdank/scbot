@@ -65,17 +65,17 @@ class scbotdb {
     
     public function bumpUpDailyCounter($which){ //values: SHARE_COUNTER, UNSHARE_COUNTER, GROUP_POLL_COUNTER
         $current_counters = $this->getDailyCounters();
-        print('bump bump; current counters: <br>');var_dump($current_counters);
+//        print('bump bump; current counters: <br>');var_dump($current_counters);
         if($current_counters!=false) {
-            print('<h5>already have counters for today: '.$current_counters[$which].'; typeof: '.gettype($current_counters[$which]).'</h5>');
+//            print('<h5>already have counters for today: '.$current_counters[$which].'; typeof: '.gettype($current_counters[$which]).'</h5>');
             $daily_counter = $current_counters[$which]+1;              
             $r = mysql_query("update daily_share_counter set ".$which."='". $daily_counter."' where DATE='".date("Ymd")."'", $this->link);
-            print("<h4>updated: ".$daily_counter."</h4><h4>"."update daily_share_counter set ".$which."='". $daily_counter ."' where DATE='".date("Ymd")."'"."</h4>");
+//            print("<h4>updated: ".$daily_counter."</h4><h4>"."update daily_share_counter set ".$which."='". $daily_counter ."' where DATE='".date("Ymd")."'"."</h4>");
             var_dump($r);
             return $r;            
         }
         else {
-                        print('<h1>dont have counters for today yet - create</h1>');
+//                        print('<h1>dont have counters for today yet - create</h1>');
             $r = mysql_query("insert into daily_share_counter (".$which.", DATE) values (1,'".date("Ymd")."')", $this->link);
             return $r;
         }
