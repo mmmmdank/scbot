@@ -117,9 +117,12 @@ class sc {
     
     public function randomSwapToTheTop() {
         $counters = $this->getCounters(); 
-        while($counters['SHARE_COUNTER'] < 100 && $counters['UNSHARE_COUNTER'] < 100) {
+        $safety = 50;$sfcntr=0;
+        var_dump($counters);
+        while($counters['SHARE_COUNTER'] < 100 && $counters['UNSHARE_COUNTER'] < 100 && $sfcntr<$safety) {$sfcntr++;
             print('share: '.$counters['SHARE_COUNTER'].' --- unshare: '.$counters['UNSHARE_COUNTER'].'<br>');
-             $this->randomSwapOneTrack(1);
+            $this->randomSwapOneTrack(1);
+            $counters = $this->getCounters(); 
         }           
         print('ding! - randomSwapToTheTop');
     }
@@ -187,6 +190,7 @@ class sc {
     }
     
     public function unshareTrack($name, $group_id) {
+        if(!$this->db->clearanceToShare()) {return false;}
         $url = $this->makeUnshareUrl($name, $group_id);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -202,6 +206,7 @@ class sc {
     }
     
     public function shareTrack($name, $group_id) {
+        if(!$this->db->clearanceToShare()) {return false;}
         $url = $this->makeShareUrl($name, $group_id);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
