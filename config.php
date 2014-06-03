@@ -11,10 +11,10 @@ class scbotconfig {
                             ,"bears"=>"97204021"
 			                ,"forklift"=>"95783468"
 			                ,"firetrucks"=>"91741317"
-                            ,"chaka"=>"79674516"
-                            ,"capleton"=>"77591808"
+                           /* ,"chaka"=>"79674516"
+                            ,"capleton"=>"77591808"*/
                             ,"tractors"=>"87757601"
-                            ,"fela"=>"72433836"
+                            /*,"fela"=>"72433836"*/
                             ,"magnumpig"=>"68747384");    
 
 }
