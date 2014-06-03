@@ -19,6 +19,12 @@ if(isset($_GET['swapspit1']) && $_GET['swapspit1']=='true') {
     print('yeaboi!');
     exit();
 }
+if(isset($_GET['tothetop']) && $_GET['tothetop']=='true') {
+    print('tothetop!');
+   $scHelper->randomSwapToTheTop();
+    print('tothetop DONE!');
+    exit();
+}
 else if(isset($_GET['run']) && $_GET['run']!="") {
     print('run ! '.$_GET['run']);
     /*$scHelper->spitSwapRun1();*/

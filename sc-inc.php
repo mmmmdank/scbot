@@ -87,29 +87,8 @@ class sc {
         return false;
     }
     
-    
-    public function doA50Reshares1stSample() {
-         /*$groups = $this->getCurrentGroupsByName("tractors");*/
-        $this->unshareTrackFromGroups("bears", $this->getCurrentGroupsByName("bears"),10);
-        $this->shareTrackToGroups("bears", $this->getCurrentGroupsByName("forklift"),10);
-        
-        $this->unshareTrackFromGroups("forklift", $this->getCurrentGroupsByName("forklift"),10);
-        $this->shareTrackToGroups("forklift", $this->getCurrentGroupsByName("bears"),10);
-        
-        $this->unshareTrackFromGroups("cow", $this->getCurrentGroupsByName("cow"),10);
-        $this->shareTrackToGroups("cow", $this->getCurrentGroupsByName("chaka"),10);
-        
-        $this->unshareTrackFromGroups("firetrucks", $this->getCurrentGroupsByName("firetrucks"),10);
-        $this->shareTrackToGroups("firetrucks", $this->getCurrentGroupsByName("tractors"),10);
-        
-        $this->unshareTrackFromGroups("whales", $this->getCurrentGroupsByName("whales"),10);
-        $this->shareTrackToGroups("whales", $this->getCurrentGroupsByName("forklift"),10);
-        
-        print('ding!');
-    }
-    
     public function spitSwapRun1() {
-         /*$groups = $this->getCurrentGroupsByName("tractors");*/
+        /*$groups = $this->getCurrentGroupsByName("tractors");*/
         $this->spitSwap("bears","forklift",10);
         $this->spitSwap("forklift","cow",10);
         $this->spitSwap("cow","whales",10);
@@ -130,13 +109,19 @@ class sc {
         $track2 = $this->getRandomTrackName();
         while($track1 == $track2) {
             $track2 = $this->getRandomTrackName();
-        }
-         
+        }         
         print('<h5>random swapper: '.$track1.' and '.$track2.'</h5>'); 
-    
         $this->spitSwap($track1,$track2,$num);
-            
         print('ding! - randomSwapOneTrack');
+    }
+    
+    public function randomSwapToTheTop() {
+        $counters = $this->getCounters(); 
+        while($counters['SHARE_COUNTER'] < 100 && $counters['UNSHARE_COUNTER'] < 100) {
+            print('share: '.$counters['SHARE_COUNTER'].' --- unshare: '.$counters['UNSHARE_COUNTER'].'<br>');
+             $this->randomSwapOneTrack(1);
+        }           
+        print('ding! - randomSwapToTheTop');
     }
     
     private function spitSwap($track1, $track2, $num){
