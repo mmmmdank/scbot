@@ -52,8 +52,6 @@ else {
     </head>
 
     <body>
-        <h1>s</h1>
-        ThingS: <br>
         All songs are currently shared to: <?php print($sc_stats['groupStats']['groups_total']); ?> groups;<br>
         Like this:<br>
         <p style="padding:20px;">
