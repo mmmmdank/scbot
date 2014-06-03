@@ -64,7 +64,7 @@ class scbotdb {
         $current_counters = $this->getDailyCounters();
         print('bump bump; current counters: <br>');var_dump($current_counters);
         if($current_counters!=false) {
-            print('<h5>already have counters for today: '.$current_counters[$which].'</h5>');
+            print('<h5>already have counters for today: '.$current_counters[$which].'; typeof: '.gettype($current_counters[$which]).'</h5>');
             $daily_counter = $current_counters[$which]++;              
             $r = mysql_query("update daily_share_counter set ".$which."='". $daily_counter."' where DATE='".date("Ymd")."'", $this->link);
             print("<h4>updated: ".$daily_counter."</h4><h4>"."update daily_share_counter set ".$which."='". $daily_counter ."' where DATE='".date("Ymd")."'"."</h4>");
