@@ -129,12 +129,14 @@ class sc {
      public function randomSwapOneTrack($num) {
         $track1 = $this->getRandomTrackName();
         $track2 = $this->getRandomTrackName();
+        while($track1 == $track2) {
+            $track2 = $this->getRandomTrackName();
+        }
          
         print('<h5>random swapper: '.$track1.' and '.$track2.'</h5>'); 
-        
+    
         /*$this->spitSwap($track1,$track2,$num);*/
-        
-        
+            
         print('ding! - randomSwapOneTrack');
     }
     
