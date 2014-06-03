@@ -63,7 +63,7 @@ else {
         <p style="color:green;margin:30px;">
             Group Polls: <?php print($counters['GROUP_POLL_COUNTER']);?><br>
             Shares Today: <?php print($counters['SHARE_COUNTER']);?><br>
-            Unshares Today: <?php print($counters['UNSHARE_COUNTER_COUNTER']);?><br>
+            Unshares Today: <?php print($counters['UNSHARE_COUNTER']);?><br>
         </p>
         
 <?php
