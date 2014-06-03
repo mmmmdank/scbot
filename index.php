@@ -42,9 +42,9 @@ else {
 
     $sc_stats = $scHelper->getStats();
     $counters = $scHelper->getCounters();   
-    var_dump($counters);
-    print('<br><br>stats heea:');
-    var_dump($sc_stats);
+ //   var_dump($counters);
+ //   print('<br><br>stats heea:');
+ //   var_dump($sc_stats);
 ?>
 <html>
     <head>
