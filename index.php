@@ -60,6 +60,12 @@ else {
             ?>
         </p>
         Counters:<br>
+        <p style="color:green;margin:30px;">
+            Group Polls: <br>
+            Shares Today: <br>
+            Unshares Today: <br>
+        </p>
+        
 <?php
 }
 ?>

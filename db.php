@@ -46,6 +46,9 @@ class scbotdb {
     public function getJsonGroupsForToday(){
         $r = mysql_query("SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'", $this->link);
         $row = mysql_fetch_array($r, MYSQL_ASSOC);
+        print('<p style="color:red;margin:30px;">'."SELECT * FROM json_stats_dump where DATE='".date("Ymd")."'<br>");
+        var_dump($row);
+        print('</p>');
         return json_decode($row['JSON'], true);
     }
     
