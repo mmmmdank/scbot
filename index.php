@@ -20,8 +20,8 @@ if(isset($_GET['swapspit1']) && $_GET['swapspit1']=='true') {
     exit();
 }
 if(isset($_GET['tothetop']) && $_GET['tothetop']=='true') {
-    print('tothetop!');
-   $scHelper->randomSwapToTheTop();
+    print('tothetoptop!');
+   //$scHelper->randomSwapToTheTop();
     print('tothetop DONE!');
     exit();
 }
@@ -53,7 +53,7 @@ else {
 
     <body>
         All songs are currently shared to: <?php print($sc_stats['groupStats']['groups_total']); ?> groups;<br>
-        Like this:<br>
+        Like thiss:<br>
         <p style="padding:20px;">
             <?php
                 if($sc_stats) {
