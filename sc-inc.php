@@ -205,8 +205,7 @@ class sc {
         var_dump($data);
     }
     
-    public function shareTrack($name,
-        if(!$this->db->clearanceToShare()) {return false;} $group_id) {
+    public function shareTrack($name, $group_id) {
         if(!$this->db->clearanceToShare()) {return false;}
         $url = $this->makeShareUrl($name, $group_id);
         $ch = curl_init($url);
@@ -214,10 +213,8 @@ class sc {
         curl_setopt($ch, CURLOPT_VERBOSE, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS    ,"track%5Bid%5D=".$this->getTrackIdByName($name));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: ' . $this->helperConfig['token'], 'Content-Length:'.strlen("track%5Bid%5D
-    his->getTrackIdByName($name))));
-        curl_setop
-         if(!$this->db->clearanceToShare()) {return false;}t($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: ' . $this->helperConfig['token'], 'Content-Length:'.strlen("track%5Bid%5D=".$this->getTrackIdByName($name))));
+        curl_setopt($ch, CURLOPT_HEADER, 0);
         $data = curl_exec($ch);
         curl_close($ch);
         $this->db->bumpUpDailyCounter('SHARE_COUNTER');
