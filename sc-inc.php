@@ -172,6 +172,7 @@ class sc {
     }
     
     public function getCurrentGroupsByName($name) {
+        if(!$this->db->clearanceToShare()) {return false;}
         $group_list_url=$this->makeGroupsURL($name);
         $xml=$this->getXmlFrom($group_list_url);
         $groups = array();
