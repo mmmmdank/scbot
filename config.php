@@ -5,9 +5,9 @@ class scbotconfig {
     public $dbUser="root";
     public $dbPass="bujurocks";
     
-    public $tracks = array( "itt"=>"165353205"
+    public $tracks = array( "bird"=>"173621319",
+                            ,"itt"=>"165353205"
                             ,"defunkrmx"=>"157695519"
-        					,"hum"=>"138695288"
         					,"cow"=>"106944823"
                             ,"whales"=>"103486177"
                             ,"goldilox"=>"99583408"
